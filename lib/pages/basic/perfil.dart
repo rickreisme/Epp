@@ -114,7 +114,7 @@ class _PerfilPageState extends State<PerfilPage> {
             ),
             Container(
               width: 296,
-              height: 63.h,
+              height: 55.h,
               decoration: BoxDecoration(
                 color: Color.fromARGB(255, 74, 41, 98),
                 borderRadius: BorderRadius.all(

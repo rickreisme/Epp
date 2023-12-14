@@ -1,5 +1,6 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, sort_child_properties_last, use_key_in_widget_constructors
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sizer/sizer.dart';
@@ -12,32 +13,29 @@ class Esqueceu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.only(left: 190),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          TextButton(
-            child: Text(
-              "Esqueceu a senha?",
-              style: TextStyle(
-                  color: Colors.white70,
-                  fontFamily: 'Varela Round',
-                  fontSize: 12.sp,
-                  fontWeight: FontWeight.w600),
-              textAlign: TextAlign.right,
-            ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => SenhaReset(),
-                ),
-              );
-            },
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        TextButton(
+          child: Text(
+            "Esqueceu a senha?",
+            style: TextStyle(
+                color: Colors.white70,
+                fontFamily: 'Varela Round',
+                fontSize: 12.sp,
+                fontWeight: FontWeight.w600),
+            textAlign: TextAlign.right,
           ),
-        ],
-      ),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => SenhaReset(),
+              ),
+            );
+          },
+        ),
+      ],
     );
   }
 }
@@ -47,36 +45,43 @@ class AindaNao extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(
-          "Ainda não possui uma conta?",
-          style: TextStyle(
-              color: Color(0xFFF1E2E2),
-              fontFamily: 'Varela Round',
-              fontSize: 13.sp,
-              fontWeight: FontWeight.w600),
-        ),
-        TextButton(
-          child: Text(
-            "Cadastre-se",
-            style: TextStyle(
-                color: Color(0xFF220339),
+    return Padding(
+      padding: const EdgeInsets.only(left: 7, right: 7),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          RichText(
+            text: TextSpan(
+              style: TextStyle(
+                color: Color(0xFFF1E2E2),
                 fontFamily: 'Varela Round',
                 fontSize: 13.5.sp,
-                fontWeight: FontWeight.bold),
-          ),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => Cadastro(),
+                fontWeight: FontWeight.w600,
               ),
-            );
-          },
-        ),
-      ],
+              children: [
+                TextSpan(
+                  text: "Ainda não possui uma conta? ",
+                ),
+                TextSpan(
+                  text: "Cadastre-se",
+                  style: TextStyle(
+                    color: Color(0xFF220339),
+                  ),
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Cadastro(),
+                        ),
+                      );
+                    },
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -110,6 +115,43 @@ class OuEntre extends StatelessWidget {
         SizedBox(
           height: 15,
         ),
+      ],
+    );
+  }
+}
+
+class Termos extends StatelessWidget {
+  final VoidCallback onPressed;
+
+  const Termos({
+    required this.onPressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          "Ao se cadastrar, você concorda com os",
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: Colors.white,
+            fontFamily: 'Varela Round',
+            fontSize: 12.sp,
+          ),
+        ),
+        TextButton(
+           child: Text(
+            "Termos de Uso",
+            style: TextStyle(
+              color: Color(0xFF220339),
+              fontFamily: 'Varela Round',
+            fontSize: 12.5.sp,
+            fontWeight: FontWeight.w600
+            ),
+           ),
+          onPressed: onPressed)
       ],
     );
   }

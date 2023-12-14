@@ -2,6 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+import '../../components/app_bar.dart';
+import '../../components/student_card.dart';
+import '../../components/student_card2.dart';
 import '../../controller/login_controller.dart';
 import '../auth/login.dart';
 import '../basic/configs.dart';
@@ -17,100 +20,10 @@ class Ranking extends StatelessWidget {
         padding: EdgeInsets.only(top: 10, left: 15, right: 15),
         child: ListView(
           children: [
-            Row(
-               mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Container(
-                  padding: EdgeInsets.only(top: 10, right: 14),
-                  child: FutureBuilder<String>(
-                    future: LoginController().usuarioLogado(),
-                    builder: (context, snapshot){
-                      if(snapshot.connectionState == ConnectionState.done){
-                        return Directionality(
-                          textDirection: TextDirection.rtl, 
-                          child: TextButton.icon(
-                            style: TextButton.styleFrom(
-                              textStyle: TextStyle(
-                              fontSize: 17.sp,
-                              fontFamily: 'Varela Round',
-                              color: Color(0xFF5F1796),
-                              fontWeight: FontWeight.w600
-                            )
-                          ),
-                          onPressed:() {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                              builder: (context) => Login(),
-                              ),
-                            );
-                            LoginController().logout();
-                          },
-                          icon: Icon(Icons.exit_to_app, size: 20),
-                          label: Text(snapshot.data.toString()),
-                          ),
-                        );
-                      }
-                      return Text('');
-                    }
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.only(top: 10),
-                  child: Text(
-                    "Ranking",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontFamily: 'Varela Round',
-                      fontSize: 19.sp,
-                      fontWeight: FontWeight.w400
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-                IconButton(
-                  color: Color(0xFF5F1796),
-                  icon: SizedBox(
-                  height: 55,
-                  width: 55,
-                    child: Icon(
-                      Icons.notifications,
-                      size: 33,
-                    ),
-                  ),
-                  onPressed:() {
-                    Navigator.push(
-                      context,
-                        MaterialPageRoute(
-                        builder: (context) => NotificationPage(),
-                        ),
-                      );
-                  }, 
-                ),
-                IconButton(
-                  color: Color(0xFF5F1796),
-                  icon: SizedBox(
-                    height: 41,
-                    width: 41,
-                    child: Icon(
-                        Icons.settings,
-                        size: 33,
-                      ),
-                  ),
-                  onPressed: (){
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                      builder: (context) => HomePageConfigs(),
-                      ),
-                    );
-                  },
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-              ],
-          ),
+            CustomAppBar(
+              userNameFuture: LoginController().usuarioLogado(),
+              pageTitle: "Ranking",
+            ),
             SizedBox(
               height: 20,
             ),
@@ -150,210 +63,22 @@ class Ranking extends StatelessWidget {
                   SizedBox(
                     height: 20,
                   ),
-                  Container(
-                    padding: EdgeInsets.only(left: 3, right: 3),
-                    width: 80.w,
-                    height: 7.h,
-                    decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 118, 8, 203),
-                      borderRadius: BorderRadius.circular(25),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                            width: 56,
-                            height: 56,
-                            decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                            ),
-                              child: ClipOval(
-                                child: Image.asset(
-                                  'assets/img/rick1.png',
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                        ),
-                        Column(
-                          children: [
-                            Container(
-                              padding: EdgeInsets.only(right: 160, top: 10),
-                              child: Text(
-                                "#1 Você",
-                                style: TextStyle(
-                                  color: Colors.amberAccent,
-                                  fontFamily: 'Varela Round',
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold
-                                ),
-                              ),
-                            ),
-                            Container(
-                              padding: EdgeInsets.only(right: 25),
-                              child: Text(
-                                "Fez 25 pontos nesta semana!",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontFamily: 'Varela Round',
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w400
-                                ),
-                              ),
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(left: 3, right: 3),
-                    width: 80.w,
-                    height: 7.h,
-                    decoration: BoxDecoration(
-                      color: Color(0xFF8E59B6),
-                      borderRadius: BorderRadius.circular(25),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        SizedBox(
-                          width: 56,
-                          height: 56,
-                          child: Image.asset("assets/img/julia.png"),
-                        ),
-                        Column(
-                          children: [
-                            Container(
-                              padding: EdgeInsets.only(right: 185, top: 10),
-                              child: Text(
-                                "Júlia",
-                                style: TextStyle(
-                                  color: Colors.amberAccent,
-                                  fontFamily: 'Varela Round',
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold
-                                ),
-                              ),
-                            ),
-                            Container(
-                              padding: EdgeInsets.only(right: 15),
-                              child: Text(
-                                "Fez 25 pontos nesta semana!",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontFamily: 'Varela Round',
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w400
-                                ),
-                              ),
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(left: 3, right: 3),
-                    width: 80.w,
-                    height: 7.h,
-                    decoration: BoxDecoration(
-                      color: Color(0xFF8E59B6),
-                      borderRadius: BorderRadius.circular(25),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        SizedBox(
-                          width: 56,
-                          height: 56,
-                          child: Image.asset("assets/img/pedro.png"),
-                        ),
-                        Column(
-                          children: [
-                            Container(
-                              padding: EdgeInsets.only(right: 180, top: 10),
-                              child: Text(
-                                "Pedro",
-                                style: TextStyle(
-                                  color: Colors.amberAccent,
-                                  fontFamily: 'Varela Round',
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold
-                                ),
-                              ),
-                            ),
-                            Container(
-                              padding: EdgeInsets.only(right: 15),
-                              child: Text(
-                                "Fez 20 pontos nesta semana!",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontFamily: 'Varela Round',
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w400
-                                ),
-                              ),
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(left: 3, right: 3),
-                    width: 80.w,
-                    height: 7.h,
-                    decoration: BoxDecoration(
-                      color: Color(0xFF8E59B6),
-                      borderRadius: BorderRadius.circular(25),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        SizedBox(
-                          width: 56,
-                          height: 56,
-                          child: Image.asset("assets/img/pedro.png"),
-                        ),
-                        Column(
-                          children: [
-                            Container(
-                              padding: EdgeInsets.only(right: 160, top: 10),
-                              child: Text(
-                                "Gabriela",
-                                style: TextStyle(
-                                  color: Colors.amberAccent,
-                                  fontFamily: 'Varela Round',
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold
-                                ),
-                              ),
-                            ),
-                            Container(
-                              padding: EdgeInsets.only(right: 16),
-                              child: Text(
-                                "Fez 15 pontos nesta semana!",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontFamily: 'Varela Round',
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w400
-                                ),
-                              ),
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
+                  Column(
+                    children: [
+                      PlayerCard(
+                        imagePath: 'assets/img/rick1.png',
+                        playerName: 'Você',
+                        points: 25,
+                        position: '#1',
+                      ),
+                      SizedBox(height: 20,),
+                      PlayerCard2(
+                        imagePath: 'assets/img/julia.png',
+                        playerName: 'Júlia',
+                        points: 23,
+                        position: '#2',
+                      ),
+                    ],
                   ),
                   Container(
                     padding: EdgeInsets.only(top: 30),

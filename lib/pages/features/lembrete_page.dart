@@ -123,7 +123,8 @@ class _LembretePageState extends State<LembretePage> {
       ),
     );
   }
-    void saveLembrete(context, {docId}) {
+
+  void saveLembrete(context, {docId}) {
   showDialog(context: context,
     builder: (BuildContext context){
       return SingleChildScrollView(
@@ -139,7 +140,7 @@ class _LembretePageState extends State<LembretePage> {
                   ),
           contentTextStyle: TextStyle(color: Colors.white),
           content: SizedBox(
-              height: 350,
+              height: 400,
               width: 335,
               child: Column(
                 children: [
@@ -172,7 +173,15 @@ class _LembretePageState extends State<LembretePage> {
                 },
               ),
               ElevatedButton(
-                child: Text("Salvar", style: TextStyle(fontSize: 13.sp, fontFamily: 'Varela Round')),
+                 style: ElevatedButton.styleFrom(
+                      backgroundColor: Color.fromARGB(255, 71, 20, 109), // Defina a cor desejada aqui
+                    ),
+                child: Text("Salvar", style: TextStyle(
+                  fontSize: 13.sp, 
+                  fontFamily: 'Varela Round',
+                  color: Colors.white
+                  )
+                ),
                 onPressed: () {
                   var l = Lembrete(
                     LoginController().idUsuario(),

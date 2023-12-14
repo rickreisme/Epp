@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../components/button_component.dart';
+import '../../components/custom_buttonE.dart';
 import '../../controller/login_controller.dart';
 import '../../model/mensagem.dart';
 
@@ -30,7 +31,7 @@ class _LoginState extends State<Login> {
               children: [
                 Container(
                   padding: EdgeInsets.only(
-                    top: 60,
+                    top: 70,
                     left: 40,
                     right: 40,
                   ),
@@ -53,10 +54,11 @@ class _LoginState extends State<Login> {
                     "Bem-vindo(a) ao E++",
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 22.sp,
+                      fontSize: 21.sp,
                       fontFamily: 'Varela Round',
                     ),
                     textAlign: TextAlign.left,
+                    softWrap: true,
                   ),
                 ),
                 Container(
@@ -82,9 +84,9 @@ class _LoginState extends State<Login> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-                      padding: EdgeInsets.only(top: 10),
-                      height: 70.h,
-                      width: double.infinity,
+                      padding: EdgeInsets.only(top: 10, left: 5, right: 5),
+                      height: 75.h,
+                      width: MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.all(
                           Radius.circular(41),
@@ -120,48 +122,20 @@ class _LoginState extends State<Login> {
                           SizedBox(
                             height: 20,
                           ),
-                          Container(
-                            width: 330,
-                            height: 42,
-                            decoration: BoxDecoration(
-                              color: Color(0xFF330E50),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(40)),
-                            ),
-                            child: SizedBox(
-                              child: (TextButton(
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Text(
-                                      "Entrar",
-                                      style: TextStyle(
-                                        color: Color(0xFFBFB9B9),
-                                        fontFamily: 'Varela Round',
-                                        fontSize: 24,
-                                      ),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ],
-                                ),
-                                onPressed: () {
-                                  String email = txtEmail.text;
-                                  String senha = txtSenha.text;
+                          CustomButton(
+                            text: "Entrar",
+                            onPressed: () {
+                              String email = txtEmail.text;
+                              String senha = txtSenha.text;
 
-                                  if (email.isEmpty || senha.isEmpty) {
-                                    mensagemErro(context,
-                                        "Por favor preencha todos os dados!");
-                                  } else {
-                                    LoginController().login(
-                                      context,
-                                      txtEmail.text,
-                                      txtSenha.text,
-                                    );
-                                  }
-                                },
-                              )),
-                            ),
+                              if (email.isEmpty || senha.isEmpty) {
+                                mensagemErro(context,
+                                    "Por favor preencha todos os dados!");
+                              } else {
+                                LoginController().login(
+                                    context, txtEmail.text, txtSenha.text);
+                              }
+                            },
                           ),
                           SizedBox(
                             height: 45,
@@ -195,27 +169,9 @@ class _LoginState extends State<Login> {
                           SizedBox(
                             height: 25,
                           ),
-                          SizedBox(
-                            child: Text(
-                              "Ao criar uma conta você concorda com os nossos",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontFamily: 'Varela Round',
-                                  fontSize: 11.5.sp,
-                                  fontWeight: FontWeight.w600),
-                            ),
-                          ),
-                          TextButton(
-                            child: Text(
-                              "Termos de Uso",
-                              style: TextStyle(
-                                  color: Color.fromARGB(255, 215, 171, 246),
-                                  fontFamily: 'Varela Round',
-                                  fontSize: 11.5.sp,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            onPressed: () {},
-                          ),
+                          Termos(
+                            onPressed:(){}
+                            )
                         ],
                       ),
                     ),

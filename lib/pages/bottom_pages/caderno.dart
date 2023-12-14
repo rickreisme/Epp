@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../components/app_bar.dart';
 import '../../controller/login_controller.dart';
 import '../auth/login.dart';
 import '../basic/configs.dart';
@@ -18,99 +19,9 @@ class Caderno extends StatelessWidget {
         padding: EdgeInsets.only(top: 10, left: 15, right: 15),
         child: ListView(
           children: [
-            Row(
-               mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Container(
-                  padding: EdgeInsets.only(top: 10, right: 14),
-                  child: FutureBuilder<String>(
-                    future: LoginController().usuarioLogado(),
-                    builder: (context, snapshot){
-                      if(snapshot.connectionState == ConnectionState.done){
-                        return Directionality(
-                          textDirection: TextDirection.rtl, 
-                          child: TextButton.icon(
-                            style: TextButton.styleFrom(
-                              textStyle: TextStyle(
-                              fontSize: 17.sp,
-                              fontFamily: 'Varela Round',
-                              color: Color(0xFF5F1796),
-                              fontWeight: FontWeight.w600
-                            )
-                          ),
-                          onPressed:() {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                              builder: (context) => Login(),
-                              ),
-                            );
-                            LoginController().logout();
-                          },
-                          icon: Icon(Icons.exit_to_app, size: 20),
-                          label: Text(snapshot.data.toString()),
-                          ),
-                        );
-                      }
-                      return Text('');
-                    }
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.only(top: 10),
-                  child: Text(
-                    "Caderno",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontFamily: 'Varela Round',
-                      fontSize: 19.sp,
-                      fontWeight: FontWeight.w400
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-                IconButton(
-                  color: Color(0xFF5F1796),
-                  icon: SizedBox(
-                  height: 55,
-                  width: 55,
-                    child: Icon(
-                      Icons.notifications,
-                      size: 33,
-                    ),
-                  ),
-                  onPressed:() {
-                    Navigator.push(
-                      context,
-                        MaterialPageRoute(
-                        builder: (context) => NotificationPage(),
-                        ),
-                      );
-                  }, 
-                ),
-                IconButton(
-                  color: Color(0xFF5F1796),
-                  icon: SizedBox(
-                    height: 41,
-                    width: 41,
-                    child: Icon(
-                        Icons.settings,
-                        size: 33,
-                      ),
-                  ),
-                  onPressed: (){
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                      builder: (context) => HomePageConfigs(),
-                      ),
-                    );
-                  },
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-              ],
+            CustomAppBar(
+              userNameFuture: LoginController().usuarioLogado(),
+              pageTitle: "Caderno",
             ),
             SizedBox(
               height: 30,

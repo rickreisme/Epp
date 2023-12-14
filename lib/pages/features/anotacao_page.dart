@@ -143,7 +143,7 @@ class _AnotacaoPageState extends State<AnotacaoPage> {
                   ),
           contentTextStyle: TextStyle(color: Colors.white),
           content: SizedBox(
-              height: 399,
+              height: 500,
               width: 335,
               child: Column(
                 children: [
@@ -194,7 +194,15 @@ class _AnotacaoPageState extends State<AnotacaoPage> {
                 decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20)),
                 child: ElevatedButton(
-                  child: Text("Salvar", style: TextStyle(fontSize: 13.sp, fontFamily: 'Varela Round')),
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Color.fromARGB(255, 71, 20, 109), // Defina a cor desejada aqui
+                    ),
+                  child: Text("Salvar", style: TextStyle(
+                    fontSize: 13.sp, 
+                    fontFamily: 'Varela Round',
+                    color: Colors.white
+                    )
+                  ),
                   onPressed: () {
                     var a = Anotacao(
                       LoginController().idUsuario(),
