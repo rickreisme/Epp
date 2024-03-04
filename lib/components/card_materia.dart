@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 
 class MateriaCard extends StatelessWidget {
   final String materiaName;
+  final VoidCallback onPressed;
 
-  MateriaCard({required this.materiaName});
+  MateriaCard({required this.materiaName, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +26,7 @@ class MateriaCard extends StatelessWidget {
         ],
       ),
       child: TextButton(
-        onPressed: () {
-          
-        },
+        onPressed: onPressed,
         style: TextButton.styleFrom(
           alignment: Alignment.center
         ),

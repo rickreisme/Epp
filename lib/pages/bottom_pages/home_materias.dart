@@ -3,6 +3,7 @@
 import 'package:epp_firebase/components/app_bar.dart';
 import 'package:epp_firebase/components/card_materia.dart';
 import 'package:epp_firebase/components/locked_card_materias.dart';
+import 'package:epp_firebase/pages/Materias/LogicaAlgoritmo.dart';
 import 'package:flutter/material.dart';
 
 import '../../controller/login_controller.dart';
@@ -35,9 +36,15 @@ class HomeMaterias extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Expanded(
-                          child: TextButton(onPressed: () {
-                            
-                          }, child: MateriaCard(materiaName: "Lógica e Algoritmo"))),
+                          child: MateriaCard(
+                              materiaName: "Lógica\nAlgoritmo",
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => LogicaAlgoritmoPage()),
+                                );
+                              })),
                       SizedBox(
                         width: 50,
                       ),
@@ -84,11 +91,13 @@ class HomeMaterias extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Expanded(child: LockedMateriaCard(materiaName: "Vetores")),
+                      Expanded(
+                          child: LockedMateriaCard(materiaName: "Vetores")),
                       SizedBox(
                         width: 50,
                       ),
-                      Expanded(child: LockedMateriaCard(materiaName: "Matrizes")),
+                      Expanded(
+                          child: LockedMateriaCard(materiaName: "Matrizes")),
                     ],
                   ),
                   SizedBox(
