@@ -35,7 +35,9 @@ class HomeMaterias extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Expanded(
-                          child: MateriaCard(materiaName: "Lógica e Algoritmo")),
+                          child: TextButton(onPressed: () {
+                            
+                          }, child: MateriaCard(materiaName: "Lógica e Algoritmo"))),
                       SizedBox(
                         width: 50,
                       ),
