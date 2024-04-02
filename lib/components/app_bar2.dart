@@ -1,19 +1,22 @@
 // ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors_in_immutables, prefer_const_constructors, unnecessary_string_interpolations
 
+// ignore: unused_import
 import 'package:epp_firebase/model/mensagem.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
-
+// ignore: unused_import
 import '../controller/login_controller.dart';
+// ignore: unused_import
 import '../pages/auth/login.dart';
+// ignore: unused_import
 import '../pages/basic/configs.dart';
+// ignore: unused_import
 import '../pages/basic/notifications.dart';
 
 class CustomAppBar extends StatelessWidget {
-  final String pageTitle; 
-  
+  final String pageTitle;
+
   const CustomAppBar({required this.pageTitle});
-  
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +28,12 @@ class CustomAppBar extends StatelessWidget {
           icon: SizedBox(
             height: 55,
             width: 55,
-            child: Icon(
-              Icons.arrow_back,
-              size: 33,
+            child: Align(
+              alignment: Alignment.center, // Alinha o ícone no centro
+              child: Icon(
+                Icons.arrow_back,
+                size: 33,
+              ),
             ),
           ),
           onPressed: () {
@@ -37,15 +43,17 @@ class CustomAppBar extends StatelessWidget {
         Flexible(
           child: Container(
             padding: EdgeInsets.only(top: 10),
-            child: Text(
-              pageTitle,
-              style: TextStyle(
-                color: Colors.white,
-                fontFamily: 'Varela Round',
-                fontSize: 19.sp,
-                fontWeight: FontWeight.w400,
+            child: Center(
+              child: Text(
+                pageTitle,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontFamily: 'Varela Round',
+                  fontSize: 19.sp,
+                  fontWeight: FontWeight.w400,
+                ),
+                textAlign: TextAlign.center,
               ),
-              textAlign: TextAlign.center,
             ),
           ),
         ),
