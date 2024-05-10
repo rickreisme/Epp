@@ -10,19 +10,10 @@ class LogicaAlgoritmoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       appBar: AppBar(
-        title: Text('Apresentação'),
-        centerTitle: true,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-      ),
-      body: Center(
-        child: Text('Esta é a página de Lógica e Algoritmo!'),
-      ),
+      backgroundColor: Color(0x453650),
+      body: Container()
+      
+      
     );
   }
 }
