@@ -7,21 +7,24 @@ import 'package:flutter/material.dart';
 import '../model/mensagem.dart';
 import '../pages/bottom_pages/bottom_bar.dart';
 
-
 class LoginController {
-
-  criarConta(context, nome, sobrenome, email, usuario, faculdade, idade, senha) {
-    FirebaseAuth.instance.createUserWithEmailAndPassword(
+  criarConta(
+      context, nome, sobrenome, email, usuario, faculdade, idade, senha) {
+    FirebaseAuth.instance
+        .createUserWithEmailAndPassword(
       email: email,
       password: senha,
-    ).then((resultado) {
+    )
+        .then((resultado) {
       FirebaseFirestore.instance.collection('usuarios').add({
-         'uid': resultado.user!.uid,
-         'nome': nome,
-         'sobrenome': sobrenome,
-         'nomeUsuario': usuario,
-         'faculdade': faculdade,
-         'idade': idade
+        'uid': resultado.user!.uid,
+        'nome': nome,
+        'sobrenome': sobrenome,
+        'nomeUsuario': usuario,
+        'faculdade': faculdade,
+        'idade': idade,
+        'pontos': 0,
+        'completouModuloUm': false
       });
       mensagemSucesso(context, 'Usuário criado com sucesso!');
       Navigator.pop(context);
@@ -36,47 +39,52 @@ class LoginController {
         case 'empty-field':
           mensagemErro(context, 'Por favor, preencha os dados.');
         default:
-          mensagemErro(context, 'ERRO: ${e.code.toString()}. Por favor verifique os dados.');
+          mensagemErro(context,
+              'ERRO: ${e.code.toString()}. Por favor verifique os dados.');
       }
     });
   }
 
-  login(context, email, senha){
-    FirebaseAuth.instance.signInWithEmailAndPassword(
-      email: email, password: senha
-      ).then((resultado){
-        mensagemSucesso(context, "Usuário logado com sucesso!");
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-            builder: (context) => BottomBar(),
-          ),
-       );
-      }).catchError((e){
-        switch (e.code){
-          case 'invalid-email':
-            mensagemErro(context, 'E-mail inválido.'); break;
-          case 'user-not-found':
-            mensagemErro(context, 'Usúario não cadastrado.'); break;
-          case 'wrong-password':
-            mensagemErro(context, 'Senha incorreta.'); break;
-          default:
-            mensagemErro(context, 'ERRO: ${e.code.toString()}. Por favor verifique os dados.');
-        }
-      });
+  login(context, email, senha) {
+    FirebaseAuth.instance
+        .signInWithEmailAndPassword(email: email, password: senha)
+        .then((resultado) {
+      mensagemSucesso(context, "Usuário logado com sucesso!");
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => BottomBar(),
+        ),
+      );
+    }).catchError((e) {
+      switch (e.code) {
+        case 'invalid-email':
+          mensagemErro(context, 'E-mail inválido.');
+          break;
+        case 'user-not-found':
+          mensagemErro(context, 'Usúario não cadastrado.');
+          break;
+        case 'wrong-password':
+          mensagemErro(context, 'Senha incorreta.');
+          break;
+        default:
+          mensagemErro(context,
+              'ERRO: ${e.code.toString()}. Por favor verifique os dados.');
+      }
+    });
   }
 
-  esqueceuSenha(context, String email){
-    if(email.isNotEmpty){
+  esqueceuSenha(context, String email) {
+    if (email.isNotEmpty) {
       FirebaseAuth.instance.sendPasswordResetEmail(email: email);
       mensagemSucesso(context, 'O e-mail foi enviado com sucesso!');
-    }else{
+    } else {
       mensagemErro(context, 'Por favor, informe um e-mail para continuar!');
     }
     Navigator.pop(context);
   }
 
-  logout(){
+  logout() {
     FirebaseAuth.instance.signOut();
   }
 
@@ -84,77 +92,110 @@ class LoginController {
     return FirebaseAuth.instance.currentUser!.uid;
   }
   
-  Future<String> usuarioLogado() async{
-    var usuario = "";
+  Future<String> pontosUsuarioLogado() async {
+    var pontos = "";
     await FirebaseFirestore.instance
-      .collection('usuarios')
-      .where('uid', isEqualTo: idUsuario())
-      .get()
-      .then(
-        (resultado){
-          usuario = resultado.docs[0].data()['nome']?? '';
+        .collection('usuarios')
+        .where('uid', isEqualTo: idUsuario())
+        .get()
+        .then(
+      (resultado) {
+        pontos = resultado.docs[0].data()['pontos'] ?? '';
+      },
+    );
+    return pontos;
+  }
+
+  Future<String> usuarioLogado() async {
+    try {
+      var usuario = "";
+      await FirebaseFirestore.instance
+          .collection('usuarios')
+          .where('uid', isEqualTo: idUsuario())
+          .get()
+          .then(
+        (resultado) {
+          usuario = resultado.docs[0].data()['nome'] ?? '';
         },
       );
       return usuario;
+    } catch (e) {
+      print(e);
+      return 'Erro';
+    }
   }
 
-  Future<String> nomeUsuarioLogado() async{
+  Future<String> nomeUsuarioLogado() async {
     Future.delayed(Duration(seconds: 1));
     var nome = "";
     var sobre = "";
     await FirebaseFirestore.instance
-      .collection('usuarios')
-      .where('uid', isEqualTo: idUsuario())
-      .get()
-      .then(
-        (resultado){
-          nome = resultado.docs[0].data()['nome']?? '';
-          sobre = resultado.docs[0].data()['sobrenome']?? '';
-        },
-      );
-      return '$nome $sobre';
+        .collection('usuarios')
+        .where('uid', isEqualTo: idUsuario())
+        .get()
+        .then(
+      (resultado) {
+        nome = resultado.docs[0].data()['nome'] ?? '';
+        sobre = resultado.docs[0].data()['sobrenome'] ?? '';
+      },
+    );
+    return '$nome $sobre';
   }
 
-  Future<String> userUsuarioLogado() async{
-    var user = "";
-    await FirebaseFirestore.instance
-      .collection('usuarios')
-      .where('uid', isEqualTo: idUsuario())
-      .get()
-      .then(
-        (resultado){
-          user = resultado.docs[0].data()['nomeUsuario']?? '';
-        },
-      );
+  Future<String> userUsuarioLogado() async {
+    try {
+      var user = "";
+      var uid = idUsuario();
+      print('UID do usuário: $uid');
+      var resultado = await FirebaseFirestore.instance
+          .collection('usuarios')
+          .where('uid', isEqualTo: uid)
+          .get();
+
+      if (resultado.docs.isNotEmpty) {
+        var userData = resultado.docs[0].data();
+        print('Dados do usuário: $userData');
+        if (userData != null && userData.containsKey('nomeUsuario')) {
+          user = userData['nomeUsuario'] ?? '';
+        } else {
+          print('Campo "nomeUsuario" não encontrado');
+        }
+      } else {
+        print('Nenhum documento encontrado');
+      }
+
       return '@$user';
+    } catch (e) {
+      print(e.toString());
+      return 'Erro';
+    }
   }
 
-  Future<String> faculdadeUsuarioLogado() async{
+  Future<String> faculdadeUsuarioLogado() async {
     var facul = "";
     await FirebaseFirestore.instance
-      .collection('usuarios')
-      .where('uid', isEqualTo: idUsuario())
-      .get()
-      .then(
-        (resultado){
-          facul = resultado.docs[0].data()['faculdade']?? '';
-        },
-      );
-      return facul;
+        .collection('usuarios')
+        .where('uid', isEqualTo: idUsuario())
+        .get()
+        .then(
+      (resultado) {
+        facul = resultado.docs[0].data()['faculdade'] ?? '';
+      },
+    );
+    return facul;
   }
 
-  Future<String> idadeUsuarioLogado() async{
+  Future<String> idadeUsuarioLogado() async {
     var idade = "";
     await FirebaseFirestore.instance
-      .collection('usuarios')
-      .where('uid', isEqualTo: idUsuario())
-      .get()
-      .then(
-        (resultado){
-          idade = resultado.docs[0].data()['idade']?? '';
-        },
-      );
-      return '$idade anos';
+        .collection('usuarios')
+        .where('uid', isEqualTo: idUsuario())
+        .get()
+        .then(
+      (resultado) {
+        idade = resultado.docs[0].data()['idade'] ?? '';
+      },
+    );
+    return '$idade anos';
   }
-
 }

@@ -3,13 +3,13 @@
 import 'package:epp_firebase/components/app_bar.dart';
 import 'package:epp_firebase/components/card_materia.dart';
 import 'package:epp_firebase/components/locked_card_materias.dart';
-import 'package:epp_firebase/pages/Materias/LogicaAlgoritmo.dart';
+import 'package:epp_firebase/pages/logicaalgoritmo/Apresentacao_la.dart';
 import 'package:flutter/material.dart';
 
 import '../../controller/login_controller.dart';
 
 class HomeMaterias extends StatelessWidget {
-  const HomeMaterias({super.key});
+  const HomeMaterias({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -36,12 +36,12 @@ class HomeMaterias extends StatelessWidget {
                     children: [
                       Expanded(
                           child: MateriaCard(
-                              materiaName: "Lógica\nAlgoritmo",
+                              materiaName: "Logica\nAlgoritmo",
                               onPressed: () {
                                 Navigator.push(
                                   context,
-                                  MaterialPageRoute(
-                                      builder: (context) => LogicaAlgoritmoPage()),
+                                  MaterialPageRoute(builder: (context) => ApresentacaoLAPage(key: UniqueKey())),
+                                  
                                 );
                               })),
                       SizedBox(

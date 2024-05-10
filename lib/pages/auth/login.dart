@@ -92,87 +92,90 @@ class _LoginState extends State<Login> {
                           Radius.circular(41),
                         ),
                         color: Color(0xFF72399D),
+                        
                       ),
-                      child: Column(
-                        children: [
-                          SizedBox(
-                            height: 25,
-                          ),
-                          TextFormFieldLogin(
-                              labelText: "E-mail",
-                              controller: txtEmail,
-                              keyboardType: TextInputType.emailAddress,
-                              prefixIcon: Icons.email,
-                              textInputAction: TextInputAction.next,
-                              obscureText: false),
-                          SizedBox(
-                            height: 18,
-                          ),
-                          TextFormFieldLogin(
-                              labelText: "Senha",
-                              controller: txtSenha,
-                              keyboardType: TextInputType.text,
-                              prefixIcon: Icons.lock,
-                              textInputAction: TextInputAction.done,
-                              obscureText: true),
-                          SizedBox(
-                            height: 3,
-                          ),
-                          Esqueceu(),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          CustomButton(
-                            text: "Entrar",
-                            onPressed: () {
-                              String email = txtEmail.text;
-                              String senha = txtSenha.text;
-
-                              if (email.isEmpty || senha.isEmpty) {
-                                mensagemErro(context,
-                                    "Por favor preencha todos os dados!");
-                              } else {
-                                LoginController().login(
-                                    context, txtEmail.text, txtSenha.text);
-                              }
-                            },
-                          ),
-                          SizedBox(
-                            height: 45,
-                          ),
-                          AindaNao(),
-                          SizedBox(height: 10),
-                          OuEntre(),
-                          SizedBox(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                InkWell(
-                                  onTap: () {},
-                                  child: FaIcon(
-                                    FontAwesomeIcons.facebook,
-                                    color: Color(0xFF330E50),
-                                    size: 25.sp,
-                                  ),
-                                ),
-                                InkWell(
-                                  onTap: () {},
-                                  child: FaIcon(
-                                    FontAwesomeIcons.google,
-                                    color: Color(0xFF330E50),
-                                    size: 25.sp,
-                                  ),
-                                ),
-                              ],
+                      child: SingleChildScrollView( // Adicionado aqui
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: 25,
                             ),
-                          ),
-                          SizedBox(
-                            height: 25,
-                          ),
-                          Termos(
-                            onPressed:(){}
+                            TextFormFieldLogin(
+                                labelText: "E-mail",
+                                controller: txtEmail,
+                                keyboardType: TextInputType.emailAddress,
+                                prefixIcon: Icons.email,
+                                textInputAction: TextInputAction.next,
+                                obscureText: false),
+                            SizedBox(
+                              height: 18,
+                            ),
+                            TextFormFieldLogin(
+                                labelText: "Senha",
+                                controller: txtSenha,
+                                keyboardType: TextInputType.text,
+                                prefixIcon: Icons.lock,
+                                textInputAction: TextInputAction.done,
+                                obscureText: true),
+                            SizedBox(
+                              height: 3,
+                            ),
+                            Esqueceu(),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            CustomButton(
+                              text: "Entrar",
+                              onPressed: () {
+                                String email = txtEmail.text;
+                                String senha = txtSenha.text;
+
+                                if (email.isEmpty || senha.isEmpty) {
+                                  mensagemErro(context,
+                                      "Por favor preencha todos os dados!");
+                                } else {
+                                  LoginController().login(
+                                      context, txtEmail.text, txtSenha.text);
+                                }
+                              },
+                            ),
+                            SizedBox(
+                              height: 45,
+                            ),
+                            AindaNao(),
+                            SizedBox(height: 10),
+                            OuEntre(),
+                            SizedBox(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  InkWell(
+                                    onTap: () {},
+                                    child: FaIcon(
+                                      FontAwesomeIcons.facebook,
+                                      color: Color(0xFF330E50),
+                                      size: 25.sp,
+                                    ),
+                                  ),
+                                  InkWell(
+                                    onTap: () {},
+                                    child: FaIcon(
+                                      FontAwesomeIcons.google,
+                                      color: Color(0xFF330E50),
+                                      size: 25.sp,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: 25,
+                            ),
+                            Termos(
+                              onPressed:(){}
                             )
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ],

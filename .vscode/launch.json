@@ -8,7 +8,7 @@
             "name": "epp_firebase",
             "request": "launch",
             "type": "dart",
-            "program": "./main.dart"
+            "program": "./lib/main.dart"
         },
         {
             "name": "epp_firebase (profile mode)",
