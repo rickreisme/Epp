@@ -3,7 +3,7 @@
 import 'package:epp_firebase/components/app_bar.dart';
 import 'package:epp_firebase/components/card_materia.dart';
 import 'package:epp_firebase/components/locked_card_materias.dart';
-import 'package:epp_firebase/pages/logicaalgoritmo/Apresentacao.dart';
+import 'package:epp_firebase/pages/logicaalgoritmo/Apresentacao_la.dart';
 import 'package:flutter/material.dart';
 
 import '../../controller/login_controller.dart';
@@ -41,7 +41,7 @@ class HomeMaterias extends StatelessWidget {
                               onPressed: () {
                                 Navigator.push(
                                   context,
-                                  MaterialPageRoute(builder: (context) => ApresentacaoPage(key: UniqueKey())),
+                                  MaterialPageRoute(builder: (context) => ApresentacaoLAPage(key: UniqueKey())),
                                   
                                 );
                               })),
