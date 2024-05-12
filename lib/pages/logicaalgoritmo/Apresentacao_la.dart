@@ -1,5 +1,4 @@
 // ignore: file_names
-import 'package:epp_firebase/controller/favorito_controller.dart';
 import 'package:epp_firebase/controller/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'conteudo_la.dart';
