@@ -1,3 +1,4 @@
+import 'package:epp_firebase/controller/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'conteudo_la3.dart'; 
 import 'package:epp_firebase/pages/bottom_pages/bottom_bar.dart';
@@ -163,7 +164,7 @@ void _showExitConfirmationDialog(BuildContext context) {
                         Navigator.of(context).pop(); // Fecha a caixa de diálogo
                         Navigator.of(context).pushAndRemoveUntil(
                           MaterialPageRoute(
-                              builder: (context) => const BottomBar()),
+                              builder: (context) => BottomBar(firebaseService: firebaseService,)),
                           (Route<dynamic> route) => false,
                         ); // Navega para HomeMaterias e remove todas as rotas anteriores
                       },

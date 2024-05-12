@@ -37,6 +37,7 @@ class _CadastroState extends State<Cadastro> {
           style: TextStyle(
               fontSize: 24,
               fontFamily: 'Varela Round',
+              color: Colors.white
             ),
           ),
         leading: IconButton(
@@ -198,16 +199,22 @@ class _CadastroState extends State<Cadastro> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                Text(
-                                  "Finalizar Cadastro",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: 'Varela Round',
-                                    fontSize: 24,
+                                Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 15),
+                                  child: Text(
+                                    "Finalizar Cadastro",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontFamily: 'Varela Round',
+                                      fontSize: 24,
+                                    ),
+                                    textAlign: TextAlign.center,
                                   ),
-                                  textAlign: TextAlign.center,
                                 ),
                               ],
+                            ),
+                            style: ButtonStyle(
+                              padding: MaterialStateProperty.all(EdgeInsets.zero)
                             ),
                             onPressed: () {
                               String nome = txtNome.text;
@@ -224,7 +231,10 @@ class _CadastroState extends State<Cadastro> {
                               }if(senha!=cSenha){
                                 mensagemErro(context, "As senhas não coincidem!");
                                 txtSenhaCheck.clear();
-                              }else{
+                              }if(senha.length < 6 && cSenha.length < 6){
+                                mensagemErro(context, "Escolha uma senha com pelo menos 6 caracteres!");
+                              }
+                              else{
                                 LoginController().criarConta(
                                 context,
                                 txtNome.text,
@@ -270,14 +280,17 @@ class _CadastroState extends State<Cadastro> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              Text(
-                                "Cancelar",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontFamily: 'Varela Round',
-                                  fontSize: 24,
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 15),
+                                child: Text(
+                                  "Cancelar",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontFamily: 'Varela Round',
+                                    fontSize: 24,
+                                  ),
+                                  textAlign: TextAlign.center,
                                 ),
-                                textAlign: TextAlign.center,
                               ),
                             ],
                           ),
@@ -289,6 +302,9 @@ class _CadastroState extends State<Cadastro> {
                               ),
                             );
                           },
+                          style: ButtonStyle(
+                            padding: MaterialStateProperty.all(EdgeInsets.zero)
+                          ),
                         )
                       ),
                     ),

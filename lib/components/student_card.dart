@@ -5,36 +5,46 @@ import 'package:sizer/sizer.dart';
 
 class PlayerCard extends StatelessWidget {
   final String imagePath;
-  final String playerName;
-  final int points;
-  final String position;
+  final String nome;
+  final int pontos;
+  final int posicao;
 
   PlayerCard({
     required this.imagePath,
-    required this.playerName,
-    required this.points,
-    required this.position,
+    required this.nome,
+    required this.pontos,
+    required this.posicao,
   });
 
   @override
   Widget build(BuildContext context) {
+    Color backgroundColor = Color.fromARGB(255, 118, 8, 203);
+    if (posicao != 1) {
+      backgroundColor = Color.fromARGB(255, 123, 86, 151);
+    }
+
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 7),
-      padding: EdgeInsets.all(16.0),
+      height: 100,
+      margin: EdgeInsets.symmetric(horizontal: 7, vertical: 10),
+      padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
-        color: Color.fromARGB(255, 118, 8, 203),
-        borderRadius: BorderRadius.circular(25),
+        color: backgroundColor,
+        borderRadius: BorderRadius.circular(30),
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          PlayerImage(imagePath: imagePath),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 7),
+            child: PlayerImage(imagePath: imagePath),
+          ),
           SizedBox(width: 16.0),
           Expanded(
             child: PlayerDetails(
-              position: position,
-              playerName: playerName,
-              points: points,
+              posicao: posicao,
+              nome: nome,
+              pontos: pontos,
             ),
           ),
         ],
@@ -51,8 +61,9 @@ class PlayerImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 56,
-      height: 56,
+      margin: EdgeInsets.only(top: 20),
+      width: 50,
+      height: 50,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
       ),
@@ -67,14 +78,14 @@ class PlayerImage extends StatelessWidget {
 }
 
 class PlayerDetails extends StatelessWidget {
-  final String position;
-  final String playerName;
-  final int points;
+  final int? posicao;
+  final String nome;
+  final int pontos;
 
   PlayerDetails({
-    required this.position,
-    required this.playerName,
-    required this.points,
+    required this.posicao,
+    required this.nome,
+    required this.pontos,
   });
 
   @override
@@ -83,7 +94,7 @@ class PlayerDetails extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "$position $playerName",
+          "#$posicao - $nome",
           style: TextStyle(
             color: Colors.amberAccent,
             fontFamily: 'Varela Round',
@@ -93,7 +104,7 @@ class PlayerDetails extends StatelessWidget {
         ),
         SizedBox(height: 8.0),
         Text(
-          "Fez $points pontos nesta semana!",
+          "Fez $pontos pontos nesta semana!",
           style: TextStyle(
             color: Colors.white,
             fontFamily: 'Varela Round',

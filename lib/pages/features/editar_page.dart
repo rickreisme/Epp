@@ -56,27 +56,28 @@ class _EditarPageState extends State<EditarPage> {
                     controller: novoNome,
                     keyboardType: TextInputType.text,
                     decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Colors.white,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      labelText: " Nome",
-                      floatingLabelBehavior: FloatingLabelBehavior.never,
-                      labelStyle: TextStyle(
-                        fontFamily: 'Varela Round',
-                        color: Color(0xFF5F1796),
-                        fontWeight: FontWeight.w600,
-                        fontSize: 14.sp,
-                      ),
-                      prefixIcon: Padding(
-                        padding: EdgeInsets.only(bottom: 2, left: 10),
-                        child: Icon(
-                          Icons.person,
-                          color: Color(0xFF5F1796),
+                        filled: true,
+                        fillColor: Colors.white,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
                         ),
-                      ),
-                    ),
+                        labelText: " Nome",
+                        floatingLabelBehavior: FloatingLabelBehavior.never,
+                        labelStyle: TextStyle(
+                          fontFamily: 'Varela Round',
+                          color: Color(0xFF5F1796),
+                          fontWeight: FontWeight.w600,
+                          fontSize: 14.sp,
+                        ),
+                        prefixIcon: Padding(
+                          padding: EdgeInsets.only(bottom: 2, left: 10),
+                          child: Icon(
+                            Icons.person,
+                            color: Color(0xFF5F1796),
+                          ),
+                        ),
+                        contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                        alignLabelWithHint: true),
                     style: TextStyle(
                       fontSize: 18,
                       fontFamily: 'Varela Round',
@@ -94,27 +95,28 @@ class _EditarPageState extends State<EditarPage> {
                     controller: novoSobrenome,
                     keyboardType: TextInputType.text,
                     decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Colors.white,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      labelText: " Sobrenome",
-                      floatingLabelBehavior: FloatingLabelBehavior.never,
-                      labelStyle: TextStyle(
-                        fontFamily: 'Varela Round',
-                        color: Color(0xFF5F1796),
-                        fontWeight: FontWeight.w600,
-                        fontSize: 14.sp,
-                      ),
-                      prefixIcon: Padding(
-                        padding: EdgeInsets.only(bottom: 2, left: 10),
-                        child: Icon(
-                          Icons.person,
-                          color: Color(0xFF5F1796),
+                        filled: true,
+                        fillColor: Colors.white,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
                         ),
-                      ),
-                    ),
+                        labelText: " Sobrenome",
+                        floatingLabelBehavior: FloatingLabelBehavior.never,
+                        labelStyle: TextStyle(
+                          fontFamily: 'Varela Round',
+                          color: Color(0xFF5F1796),
+                          fontWeight: FontWeight.w600,
+                          fontSize: 14.sp,
+                        ),
+                        prefixIcon: Padding(
+                          padding: EdgeInsets.only(bottom: 2, left: 10),
+                          child: Icon(
+                            Icons.person,
+                            color: Color(0xFF5F1796),
+                          ),
+                        ),
+                        contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                        alignLabelWithHint: true),
                     style: TextStyle(
                       fontSize: 18,
                       fontFamily: 'Varela Round',
@@ -142,6 +144,14 @@ class _EditarPageState extends State<EditarPage> {
                   ),
                   child: SizedBox(
                     child: (TextButton(
+                      onPressed: () {
+                        atualizaNome(context, novoNome, novoSobrenome);
+                        Navigator.pop(context);
+                      },
+                      style: ButtonStyle(
+                        padding: MaterialStateProperty.all(EdgeInsets
+                            .zero), // Remove o padding padrão do TextButton
+                      ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -156,10 +166,6 @@ class _EditarPageState extends State<EditarPage> {
                           ),
                         ],
                       ),
-                      onPressed: () {
-                        atualizaNome(context, novoNome, novoSobrenome);
-                        Navigator.pop(context);
-                      },
                     )),
                   ),
                 ),
@@ -173,20 +179,18 @@ class _EditarPageState extends State<EditarPage> {
 
   Future atualizaNome(context, nome, sobrenome) async {
     String docId = '';
-    
+
     await FirebaseFirestore.instance
-    .collection('usuarios')
-    .where('uid', isEqualTo: LoginController().idUsuario())
-    .get()
-    .then((resultado) {
+        .collection('usuarios')
+        .where('uid', isEqualTo: LoginController().idUsuario())
+        .get()
+        .then((resultado) {
       docId = resultado.docs[0].id.toString();
     });
 
-    await FirebaseFirestore.instance.
-    collection('usuarios')
-    .doc(docId)
-    .update({'nome': nome.text, 'sobrenome': sobrenome.text}
-    );
+    await FirebaseFirestore.instance
+        .collection('usuarios')
+        .doc(docId)
+        .update({'nome': nome.text, 'sobrenome': sobrenome.text});
   }
-
 }

@@ -1,9 +1,15 @@
+// ignore_for_file: library_private_types_in_public_api, use_super_parameters, avoid_print
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:epp_firebase/pages/logicaalgoritmo/Apresentacao_la.dart';
 import 'package:epp_firebase/pages/logicaalgoritmo/conclusao_la.dart';
 import 'package:flutter/foundation.dart';
+
+import '../../controller/login_controller.dart';
+import '../bottom_pages/bottom_bar.dart';
 
 class ExercicioLAPage extends StatefulWidget {
   const ExercicioLAPage({Key? key}) : super(key: key);
@@ -13,99 +19,220 @@ class ExercicioLAPage extends StatefulWidget {
 }
 
 class _ExercicioLAPageState extends State<ExercicioLAPage> {
+  Future<bool> usuarioCompletoModuloUm() async {
+    try {
+      String userId = FirebaseAuth.instance.currentUser?.uid ?? '';
+
+      QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+          .collection('usuarios')
+          .where('uid', isEqualTo: userId)
+          .get();
+
+      if (querySnapshot.docs.isNotEmpty) {
+        Map<String, dynamic> userData =
+            querySnapshot.docs.first.data() as Map<String, dynamic>;
+
+        if (userData.containsKey('completouModuloUm') &&
+            userData['completouModuloUm'] is bool) {
+          bool completouModuloUm = userData['completouModuloUm'] ?? false;
+
+          //usuario completou modulo = true ? false
+          return completouModuloUm;
+        } else {
+          print("O campo não é booleano");
+          return false;
+        }
+      } else {
+        print("Documento não encontrado");
+        return false;
+      }
+    } catch (e) {
+      print('Erro ao verificar se o usuário completou o módulo: $e');
+      // Em caso de erro, retorna false
+      return false;
+    }
+  }
+
   //essa é lista como aparece ao entrar na pagina
   final List<String> _itens = [
-    'Ferver a água',
-    'Servir o café na xícara',
-    'Pegar a xícara',
-    'Por pó de café no filtro',
-    'Pegar o filtro',
-    'Esperar o café coar',
-    'Despejar agua fervida no filtro',
+    'Presunto',
+    'Fatia de pão (topo)',
+    'Tomate',
+    'Alface',
+    'Fatia de pão (base)',
+    'Queijo',
   ];
 
   final List<List<String>> _correctOrders = [
     //essas são as combinações possíveis
     [
-      'Ferver a água',
-      'Pegar a xícara',
-      'Pegar o filtro',
-      'Por pó de café no filtro',
-      'Despejar agua fervida no filtro',
-      'Esperar o café coar',
-      'Servir o café na xícara',
+      'Fatia de pão (topo)',
+      'Presunto',
+      'Tomate',
+      'Alface',
+      'Queijo',
+      'Fatia de pão (base)'
     ],
     [
-      'Pegar a xícara',
-      'Pegar o filtro',
-      'Por pó de café no filtro',
-      'Ferver a água',
-      'Despejar agua fervida no filtro',
-      'Esperar o café coar',
-      'Servir o café na xícara',
+      'Fatia de pão (topo)',
+      'Presunto',
+      'Alface',
+      'Tomate',
+      'Queijo',
+      'Fatia de pão (base)'
     ],
     [
-      'Pegar o filtro',
-      'Por pó de café no filtro',
-      'Pegar a xícara',
-      'Ferver a água',
-      'Despejar agua fervida no filtro',
-      'Esperar o café coar',
-      'Servir o café na xícara',
+      'Fatia de pão (topo)',
+      'Presunto',
+      'Queijo',
+      'Tomate',
+      'Alface',
+      'Fatia de pão (base)'
     ],
     [
-      'Pegar o filtro',
-      'Pegar a xícara',
-      'Por pó de café no filtro',
-      'Ferver a água',
-      'Despejar agua fervida no filtro',
-      'Esperar o café coar',
-      'Servir o café na xícara',
+      'Fatia de pão (topo)',
+      'Presunto',
+      'Tomate',
+      'Queijo',
+      'Alface',
+      'Fatia de pão (base)'
     ],
     [
-      'Ferver a água',
-      'Pegar o filtro',
-      'Pegar a xícara',
-      'Por pó de café no filtro',
-      'Despejar agua fervida no filtro',
-      'Esperar o café coar',
-      'Servir o café na xícara',
+      'Fatia de pão (topo)',
+      'Queijo',
+      'Presunto',
+      'Tomate',
+      'Alface',
+      'Fatia de pão (base)'
     ],
     [
-      'Pegar a xícara',
-      'Pegar o filtro',
-      'Ferver a água',
-      'Por pó de café no filtro',
-      'Despejar agua fervida no filtro',
-      'Esperar o café coar',
-      'Servir o café na xícara',
+      'Fatia de pão (topo)',
+      'Queijo',
+      'Tomate',
+      'Presunto',
+      'Alface',
+      'Fatia de pão (base)'
     ],
     [
-      'Ferver a água',
-      'Pegar o filtro',
-      'Pegar a xícara',
-      'Por pó de café no filtro',
-      'Despejar agua fervida no filtro',
-      'Esperar o café coar',
-      'Servir o café na xícara',
+      'Fatia de pão (topo)',
+      'Queijo',
+      'Tomate',
+      'Alface',
+      'Presunto',
+      'Fatia de pão (base)'
     ],
     [
-      'Pegar o filtro',
-      'Ferver a água',
-      'Por pó de café no filtro',
-      'Pegar a xícara',
-      'Despejar agua fervida no filtro',
-      'Esperar o café coar',
-      'Servir o café na xícara',
+      'Fatia de pão (topo)',
+      'Queijo',
+      'Alface',
+      'Presunto',
+      'Tomate',
+      'Fatia de pão (base)'
     ],
     [
-      'Pegar a xícara',
-      'Ferver a água',
-      'Pegar o filtro',
-      'Por pó de café no filtro',
-      'Despejar agua fervida no filtro',
-      'Esperar o café coar',
-      'Servir o café na xícara',
+      'Fatia de pão (topo)',
+      'Queijo',
+      'Alface',
+      'Tomate',
+      'Presunto',
+      'Fatia de pão (base)'
+    ],
+    // Combinações adicionadas
+    [
+      'Fatia de pão (topo)',
+      'Tomate',
+      'Presunto',
+      'Alface',
+      'Queijo',
+      'Fatia de pão (base)'
+    ],
+    [
+      'Fatia de pão (topo)',
+      'Tomate',
+      'Presunto',
+      'Queijo',
+      'Alface',
+      'Fatia de pão (base)'
+    ],
+    [
+      'Fatia de pão (topo)',
+      'Tomate',
+      'Alface',
+      'Presunto',
+      'Queijo',
+      'Fatia de pão (base)'
+    ],
+    [
+      'Fatia de pão (topo)',
+      'Tomate',
+      'Alface',
+      'Queijo',
+      'Presunto',
+      'Fatia de pão (base)'
+    ],
+    [
+      'Fatia de pão (topo)',
+      'Tomate',
+      'Queijo',
+      'Presunto',
+      'Alface',
+      'Fatia de pão (base)'
+    ],
+    [
+      'Fatia de pão (topo)',
+      'Tomate',
+      'Queijo',
+      'Alface',
+      'Presunto',
+      'Fatia de pão (base)'
+    ],
+    [
+      'Fatia de pão (topo)',
+      'Alface',
+      'Presunto',
+      'Tomate',
+      'Queijo',
+      'Fatia de pão (base)'
+    ],
+    [
+      'Fatia de pão (topo)',
+      'Alface',
+      'Presunto',
+      'Queijo',
+      'Tomate',
+      'Fatia de pão (base)'
+    ],
+    [
+      'Fatia de pão (topo)',
+      'Alface',
+      'Tomate',
+      'Presunto',
+      'Queijo',
+      'Fatia de pão (base)'
+    ],
+    [
+      'Fatia de pão (topo)',
+      'Alface',
+      'Tomate',
+      'Queijo',
+      'Presunto',
+      'Fatia de pão (base)'
+    ],
+    [
+      'Fatia de pão (topo)',
+      'Alface',
+      'Queijo',
+      'Presunto',
+      'Tomate',
+      'Fatia de pão (base)'
+    ],
+    [
+      'Fatia de pão (topo)',
+      'Alface',
+      'Queijo',
+      'Tomate',
+      'Presunto',
+      'Fatia de pão (base)'
     ],
   ];
 
@@ -169,7 +296,7 @@ class _ExercicioLAPageState extends State<ExercicioLAPage> {
                 bottom: 8.0,
                 right: screenWidth * 0.1), // alterei aqui
             child: Text(
-              'Fazendo uma xícara de café:',
+              'Fazendo um sanduíche - Ordene os ingredientes:',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: screenWidth * 0.05,
@@ -193,15 +320,25 @@ class _ExercicioLAPageState extends State<ExercicioLAPage> {
                   ),
                   child: ListTile(
                     title: Center(
-                      child: Text(
-                        item,
-                        style: const TextStyle(
-                          fontSize: 20, // Aumentando a fonte do texto
-                        ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 7),
+                            child: Text(
+                              item,
+                              style: const TextStyle(
+                                fontSize: 20, // Aumentando a fonte do texto
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                          const Icon(Icons.drag_handle)
+                        ],
                       ),
                     ),
-                    trailing: const SizedBox
-                        .shrink(), // Removendo o ícone do lado direito
+                    // trailing: const SizedBox
+                    //     .shrink(), // Removendo o ícone do lado direito
                   ),
                 );
               },
@@ -246,11 +383,13 @@ class _ExercicioLAPageState extends State<ExercicioLAPage> {
                   backgroundColor:
                       MaterialStateProperty.all(const Color(0xFF453650)),
                   fixedSize: MaterialStateProperty.all(
-                      Size(screenWidth * 0.375, screenHeight * 0.110)),
+                      Size(screenWidth * 0.400, screenHeight * 0.110)),
                   shape: MaterialStateProperty.all(RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(18))),
                 ),
-                onPressed: verificarExercicio,
+                onPressed: () {
+                  verificarExercicio();
+                },
                 child: Text(
                   'Verificar',
                   style: TextStyle(
@@ -266,56 +405,115 @@ class _ExercicioLAPageState extends State<ExercicioLAPage> {
     );
   }
 
-  void verificarExercicio() {
-    // Aqui vai o código para verificar se o exercício está correto
-   bool isCorrect = _correctOrders.any((order) => listEquals(_itens, order));
-    if (isCorrect) {
-      // Se o exercício estiver correto, chame o método para verificar e atualizar o módulo 1
-      verificarEAtualizarModuloUm(context);
-      Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => const ConclusaoLAPage()),
+  void verificarExercicio() async {
+    bool completo = await usuarioCompletoModuloUm();
+    print(completo);
+
+    bool isCorrect = _correctOrders.any((order) => listEquals(_itens, order));
+    if (completo) {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text("Módulo já concuído"),
+          content: Text("Parabéns! Você acertou novamente!"),
+          actions: [
+            TextButton(
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => BottomBar(
+                        firebaseService: firebaseService,
+                      ),
+                    ),
+                  );
+
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                            BottomBar(firebaseService: firebaseService)),
+                    (route) => false,
+                  );
+                },
+                child: Text("Finalizar")),
+          ],
+        ),
       );
     } else {
-      setState(() {
-        _message = '\n Ops parece que algo não está fazendo sentido';
-      });
+      if (isCorrect) {
+        atualizaCompletaModuloUm(true);
+        verificarEAtualizarModuloUm(context);
+
+        Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => const ConclusaoLAPage()),
+        );
+      } else {
+        setState(() {
+          _message = '\n Ops parece que algo não está fazendo sentido';
+        });
+      }
+    }
+  }
+
+  void atualizaCompletaModuloUm(bool completou) async {
+    try {
+      String userId = FirebaseAuth.instance.currentUser?.uid ?? '';
+
+      // Realiza a consulta para encontrar o documento do usuário com base no UID
+      QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+          .collection('usuarios')
+          .where('uid', isEqualTo: userId)
+          .get();
+
+      // Verifica se a consulta retornou algum documento
+      if (querySnapshot.docs.isNotEmpty) {
+        // Obtém a referência ao primeiro documento retornado pela consulta
+        DocumentReference userRef = querySnapshot.docs.first.reference;
+
+        await userRef.update({
+          'completouModuloUm': completou,
+        });
+
+        print('Documento do usuário atualizado com sucesso!');
+      } else {
+        print('Documento do usuário não encontrado.');
+      }
+    } catch (e) {
+      print('Erro ao atualizar o documento do usuário: $e');
+    }
+  }
+
+  void atualizaPontos() async {
+    try {
+      String userId = FirebaseAuth.instance.currentUser?.uid ?? '';
+
+      // Realiza a consulta para encontrar o documento do usuário com base no UID
+      QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+          .collection('usuarios')
+          .where('uid', isEqualTo: userId)
+          .get();
+
+      // Verifica se a consulta retornou algum documento
+      if (querySnapshot.docs.isNotEmpty) {
+        // Obtém a referência ao primeiro documento retornado pela consulta
+        DocumentReference userRef = querySnapshot.docs.first.reference;
+
+        await userRef.update({
+          'pontos': FieldValue.increment(5),
+        });
+
+        print('Documento do usuário atualizado com sucesso!');
+      } else {
+        print('Documento do usuário não encontrado.');
+      }
+    } catch (e) {
+      print('Erro ao atualizar o documento do usuário: $e');
     }
   }
 
   Future<void> verificarEAtualizarModuloUm(BuildContext context) async {
-    final user = FirebaseAuth.instance.currentUser;
-    if (user == null) return;
-
-    final docRef =
-        FirebaseFirestore.instance.collection('usuarios').doc(user.uid);
-    final doc = await docRef.get();
-
-    if (!doc.exists) return;
-
-    final userData = doc.data();
-    final bool completouModuloUm = userData?['completouModuloUm'] ?? false;
-
-    if (!completouModuloUm) {
-      await docRef.update(
-          {'completouModuloUm': true, 'pontos': FieldValue.increment(5)});
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: const Text('Parabéns!'),
-            content: const Text('Você completou o Módulo 1 e ganhou 5 pontos!'),
-            actions: <Widget>[
-              TextButton(
-                child: const Text('OK'),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
-          );
-        },
-      );
-    }
+    atualizaPontos();
   }
 
   void _showExitConfirmationDialog(BuildContext context) {

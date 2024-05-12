@@ -52,29 +52,30 @@ class TextFormFieldTxt extends StatelessWidget {
         keyboardType: keyboardType,
         obscureText: obscureText,
         decoration: InputDecoration(
-          filled: true,
-          fillColor: Colors.white,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(20),
-          ),
-          labelText: labelText,
-          floatingLabelBehavior: FloatingLabelBehavior.never,
-          labelStyle: TextStyle(
-            fontFamily: 'Varela Round',
-            color: Color(0xFF5F1796),
-            fontWeight: FontWeight.w600,
-            fontSize: 14.sp,
-          ),
-          prefixIcon: prefixIcon != null
-              ? Padding(
-                  padding: EdgeInsets.only(bottom: 2, left: 10),
-                  child: Icon(
-                    prefixIcon,
-                    color: Color(0xFF5F1796),
-                  ),
-                )
-              : null,
-        ),
+            filled: true,
+            fillColor: Colors.white,
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
+            labelText: labelText,
+            floatingLabelBehavior: FloatingLabelBehavior.never,
+            labelStyle: TextStyle(
+              fontFamily: 'Varela Round',
+              color: Color(0xFF5F1796),
+              fontWeight: FontWeight.w600,
+              fontSize: 14.sp,
+            ),
+            prefixIcon: prefixIcon != null
+                ? Padding(
+                    padding: EdgeInsets.only(bottom: 2, left: 10),
+                    child: Icon(
+                      prefixIcon,
+                      color: Color(0xFF5F1796),
+                    ),
+                  )
+                : null,
+            contentPadding: EdgeInsets.symmetric(horizontal: 15),
+            alignLabelWithHint: true),
         style: TextStyle(
           fontSize: 18,
           fontFamily: 'Varela Round',
@@ -114,29 +115,30 @@ class TextFormFieldLogin extends StatelessWidget {
         keyboardType: keyboardType,
         obscureText: obscureText,
         decoration: InputDecoration(
-          filled: true,
-          fillColor: Colors.white,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(40),
-          ),
-          labelText: labelText,
-          floatingLabelBehavior: FloatingLabelBehavior.never,
-          labelStyle: TextStyle(
-            fontFamily: 'Varela Round',
-            color: Color(0xFF5F1796),
-            fontWeight: FontWeight.w600,
-            fontSize: 14.sp,
-          ),
-          prefixIcon: prefixIcon != null
-              ? Padding(
-                  padding: EdgeInsets.only(bottom: 2, left: 10),
-                  child: Icon(
-                    prefixIcon,
-                    color: Color(0xFF5F1796),
-                  ),
-                )
-              : null,
-        ),
+            filled: true,
+            fillColor: Colors.white,
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(40),
+            ),
+            labelText: labelText,
+            floatingLabelBehavior: FloatingLabelBehavior.never,
+            labelStyle: TextStyle(
+              fontFamily: 'Varela Round',
+              color: Color(0xFF5F1796),
+              fontWeight: FontWeight.w600,
+              fontSize: 14.sp,
+            ),
+            prefixIcon: prefixIcon != null
+                ? Padding(
+                    padding: EdgeInsets.only(bottom: 2, left: 10),
+                    child: Icon(
+                      prefixIcon,
+                      color: Color(0xFF5F1796),
+                    ),
+                  )
+                : null,
+            contentPadding: EdgeInsets.symmetric(horizontal: 15),
+            alignLabelWithHint: true),
         style: TextStyle(
           fontSize: 18,
           fontFamily: 'Varela Round',

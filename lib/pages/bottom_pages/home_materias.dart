@@ -1,9 +1,11 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_print
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:epp_firebase/components/app_bar.dart';
 import 'package:epp_firebase/components/card_materia.dart';
 import 'package:epp_firebase/components/locked_card_materias.dart';
 import 'package:epp_firebase/pages/logicaalgoritmo/Apresentacao_la.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../../controller/login_controller.dart';
@@ -40,8 +42,9 @@ class HomeMaterias extends StatelessWidget {
                               onPressed: () {
                                 Navigator.push(
                                   context,
-                                  MaterialPageRoute(builder: (context) => ApresentacaoLAPage(key: UniqueKey())),
-                                  
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          ApresentacaoLAPage(key: UniqueKey())),
                                 );
                               })),
                       SizedBox(

@@ -1,4 +1,6 @@
 // ignore: file_names
+import 'package:epp_firebase/controller/favorito_controller.dart';
+import 'package:epp_firebase/controller/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'conteudo_la.dart';
 import 'package:epp_firebase/pages/bottom_pages/bottom_bar.dart';
@@ -33,7 +35,7 @@ class ApresentacaoLAPage extends StatelessWidget {
             padding: EdgeInsets.symmetric(vertical: screenHeight * 0.02),
             child: IconButton(
               icon: Icon(
-               Icons.arrow_back_ios_new,
+                Icons.arrow_back_ios_new,
                 color: Colors.white,
                 size: screenWidth * 0.07,
               ),
@@ -115,8 +117,8 @@ class ApresentacaoLAPage extends StatelessWidget {
         return AlertDialog(
           title: Text(
             'Voltar às matérias?',
-            textAlign: TextAlign.center, // Centraliza 
-            style: TextStyle(fontSize: textSize), 
+            textAlign: TextAlign.center, // Centraliza
+            style: TextStyle(fontSize: textSize),
           ),
           content: SingleChildScrollView(
             // Garante a acessibilidade do conteúdo
@@ -137,15 +139,13 @@ class ApresentacaoLAPage extends StatelessWidget {
                               .pop(); // Fecha a caixa de diálogo
                           Navigator.of(context).pushAndRemoveUntil(
                             MaterialPageRoute(
-                                builder: (context) => const BottomBar()),
+                                builder: (context) => BottomBar(firebaseService: firebaseService,)),
                             (Route<dynamic> route) => false,
                           ); // Navega para HomeMaterias e remove todas as rotas anteriores
                         },
                         child: Text(
                           'Sim',
-                          style: TextStyle(
-                              fontSize:
-                                  textSize), 
+                          style: TextStyle(fontSize: textSize),
                         ),
                       ),
                       TextButton(
@@ -155,9 +155,7 @@ class ApresentacaoLAPage extends StatelessWidget {
                         },
                         child: Text(
                           'Não',
-                          style: TextStyle(
-                              fontSize:
-                                  textSize), 
+                          style: TextStyle(fontSize: textSize),
                         ),
                       ),
                     ],

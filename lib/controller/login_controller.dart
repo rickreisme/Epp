@@ -1,11 +1,16 @@
 // ignore_for_file: prefer_const_constructors, unnecessary_string_interpolations
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:epp_firebase/pages/auth/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../model/mensagem.dart';
 import '../pages/bottom_pages/bottom_bar.dart';
+import '../services/firebase_service.dart';
+
+FirebaseFirestore firestore = FirebaseFirestore.instance;
+FirebaseService firebaseService = FirebaseService(firestore);
 
 class LoginController {
   criarConta(
@@ -50,12 +55,19 @@ class LoginController {
         .signInWithEmailAndPassword(email: email, password: senha)
         .then((resultado) {
       mensagemSucesso(context, "Usuário logado com sucesso!");
-      Navigator.push(
+      Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => BottomBar(),
+          builder: (context) => BottomBar(firebaseService: firebaseService,),
         ),
       );
+
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (BuildContext context) => BottomBar(firebaseService: firebaseService)),
+        (route) => false,
+      );
+      
     }).catchError((e) {
       switch (e.code) {
         case 'invalid-email':
@@ -84,26 +96,17 @@ class LoginController {
     Navigator.pop(context);
   }
 
-  logout() {
+  logout(context) {
     FirebaseAuth.instance.signOut();
+    Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (BuildContext context) => Login()),
+        (route) => false,
+      );
   }
 
   idUsuario() {
     return FirebaseAuth.instance.currentUser!.uid;
-  }
-  
-  Future<String> pontosUsuarioLogado() async {
-    var pontos = "";
-    await FirebaseFirestore.instance
-        .collection('usuarios')
-        .where('uid', isEqualTo: idUsuario())
-        .get()
-        .then(
-      (resultado) {
-        pontos = resultado.docs[0].data()['pontos'] ?? '';
-      },
-    );
-    return pontos;
   }
 
   Future<String> usuarioLogado() async {
@@ -197,5 +200,19 @@ class LoginController {
       },
     );
     return '$idade anos';
+  }
+
+  Future<String> pontosUsuarioLogado() async {
+    var pontos = "";
+    await FirebaseFirestore.instance
+        .collection('usuarios')
+        .where('uid', isEqualTo: idUsuario())
+        .get()
+        .then(
+      (resultado) {
+        pontos = resultado.docs[0].data()['pontos'] ?? '';
+      },
+    );
+    return pontos;
   }
 }

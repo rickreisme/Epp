@@ -1,7 +1,7 @@
+import 'package:epp_firebase/controller/login_controller.dart';
 import 'package:epp_firebase/pages/logicaalgoritmo/Apresentacao_la.dart';
 import 'package:flutter/material.dart';
 import 'package:epp_firebase/pages/bottom_pages/bottom_bar.dart';
-
 
 class ConclusaoLAPage extends StatelessWidget {
   const ConclusaoLAPage({Key? key}) : super(key: key);
@@ -72,7 +72,7 @@ class ConclusaoLAPage extends StatelessWidget {
                       backgroundColor:
                           MaterialStateProperty.all(const Color(0xFF453650)),
                       fixedSize: MaterialStateProperty.all(
-                          Size(screenWidth * 0.375, screenHeight * 0.110)),
+                          Size(screenWidth * 0.400, screenHeight * 0.110)),
                       shape: MaterialStateProperty.all(
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(18),
@@ -85,11 +85,29 @@ class ConclusaoLAPage extends StatelessWidget {
                         MaterialPageRoute(
                           builder: (context) => Builder(
                             builder: (context) {
-                              // Agora você pode usar Scaffold.of(context) aqui
-                              return const BottomBar();
+                              return BottomBar(firebaseService: firebaseService,);
                             },
                           ),
                         ),
+                      );
+
+                                            showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: const Text('Parabéns!'),
+                            content: const Text(
+                                'Você completou o Módulo 1 e ganhou 5 pontos!'),
+                            actions: <Widget>[
+                              TextButton(
+                                child: const Text('OK'),
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                              ),
+                            ],
+                          );
+                        },
                       );
                     },
                     child: Text(

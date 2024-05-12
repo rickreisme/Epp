@@ -15,19 +15,19 @@ class CustomAppBar extends StatelessWidget {
 
   CustomAppBar({required this.userNameFuture, required this.pageTitle});
 
-String getInitials(String name) {
-  List<String> nameSplit = name.split(" ");
-  if (nameSplit.length > 1) {
-    return "${nameSplit[0][0]}${nameSplit.last[0]}";
-  } else {
-    if (name.length >= 2) {
-      int lastInitialIndex = name.indexOf(' ') + 1;
-      return "${name[0]}${name[lastInitialIndex]}";
+  String getInitials(String name) {
+    List<String> nameSplit = name.split(" ");
+    if (nameSplit.length > 1) {
+      return "${nameSplit[0][0]}${nameSplit.last[0]}";
     } else {
-      return name;
+      if (name.length >= 2) {
+        int lastInitialIndex = name.indexOf(' ') + 1;
+        return "${name[0]}${name[lastInitialIndex]}";
+      } else {
+        return name;
+      }
     }
   }
-}
 
   @override
   Widget build(BuildContext context) {
@@ -48,19 +48,26 @@ String getInitials(String name) {
                         textStyle: TextStyle(
                           fontSize: 19.sp,
                           fontFamily: 'Varela Round',
-                          color: Color(0xFF5F1796),
+                          color: Color(0xFF8E59B6),
                           fontWeight: FontWeight.w600,
                         ),
                       ),
                       onPressed: () {
-                        Navigator.push(
+                        Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                             builder: (context) => Login(),
                           ),
                         );
-                        mensagemSucesso(context, "Usuário desconectado com sucesso");
-                        LoginController().logout();
+                        Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) => Login()),
+                          (route) => false,
+                        );
+                        mensagemSucesso(
+                            context, "Usuário desconectado com sucesso");
+                        LoginController().logout(context);
                       },
                       icon: Icon(Icons.exit_to_app, size: 20),
                       label: Text(
@@ -93,7 +100,7 @@ String getInitials(String name) {
         ),
         IconButton(
           padding: EdgeInsets.only(top: 10),
-          color: Color(0xFF5F1796),
+          color: Color(0xFF8E59B6),
           icon: SizedBox(
             height: 55,
             width: 55,
@@ -113,7 +120,7 @@ String getInitials(String name) {
         ),
         IconButton(
           padding: EdgeInsets.only(top: 10),
-          color: Color(0xFF5F1796),
+          color: Color(0xFF8E59B6),
           icon: SizedBox(
             height: 41,
             width: 41,

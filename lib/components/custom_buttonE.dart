@@ -22,18 +22,25 @@ class CustomButton extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                text,
-                style: TextStyle(
-                  color: Color(0xFFBFB9B9),
-                  fontFamily: 'Varela Round',
-                  fontSize: 24,
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 15),
+                child: Text(
+                  text,
+                  style: TextStyle(
+                    color: Color(0xFFBFB9B9),
+                    fontFamily: 'Varela Round',
+                    fontSize: 24,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-                textAlign: TextAlign.center,
               ),
             ],
           ),
           onPressed: onPressed,
+          style: ButtonStyle(
+            padding: MaterialStateProperty.all(
+                EdgeInsets.zero), // Remove o padding padrão do TextButton
+          ),
         ),
       ),
     );
