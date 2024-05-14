@@ -16,9 +16,11 @@ Atualmente, o projeto está em desenvolvimento.
 - **Rick Reis**
 - **Melissa Nascimento**
 
-<img src="assets/img/login.png" alt="Tela de login do aplicativo E++" width="200"/> 
-<img src="assets/img/telaMaterias.png" alt="Tela principal do aplicativo E++" width="200"/>
-<img src="assets/img/telaLogicaEAlgoritmo.png" alt="Tela principal da disciplina de Lógica e Algoritmo do aplicativo E++" width="200"/>
+<div style="display: flex; flex-direction: row; gap: 5px;">
+    <img src="assets/img/login.png" alt="Tela de login do aplicativo E++" width="200"/> 
+    <img src="assets/img/telaMaterias.png" alt="Tela principal do aplicativo E++" width="200"/>
+    <img src="assets/img/telaLogicaEAlgoritmo.png" alt="Tela principal da disciplina de Lógica e Algoritmo do aplicativo E++" width="200"/>
+</div>
 
 ## Estrutura do Projeto
 
@@ -96,5 +98,7 @@ Siga os passos abaixo para configurar e rodar o aplicativo E++ em sua máquina d
      ```sh
      flutter run
      ```
+
 ---
+
 2024 | E++ - Rick Reis & Melissa Nascimento
