@@ -97,5 +97,4 @@ Siga os passos abaixo para configurar e rodar o aplicativo E++ em sua máquina d
      flutter run
      ```
 ---
-<img src="assets/img/logo.png" alt="Logo do aplicativo E++"/>
 2024 | E++ - Rick Reis & Melissa Nascimento
