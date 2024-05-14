@@ -1,6 +1,6 @@
 # E++
 
-![Logo do aplicativo E++](assets/img/logo.png)
+<img src="assets/img/logo.png" alt="Logo do aplicativo E++"/>
 
 Este é o repositório do aplicativo E++, um projeto em desenvolvimento utilizando o framework Flutter e a linguagem Dart.
 
