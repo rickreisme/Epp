@@ -1,12 +1,12 @@
-import 'package:epp_firebase/controller/login_controller.dart';
-import 'package:epp_firebase/pages/logicaalgoritmo/exercicio_la.dart';
+import 'package:epp/controller/login_controller.dart';
+import 'package:epp/pages/logicaalgoritmo/exercicio_la.dart';
 import 'package:flutter/material.dart';
-import 'package:epp_firebase/pages/bottom_pages/bottom_bar.dart';
+import 'package:epp/pages/bottom_pages/bottom_bar.dart';
 
 
 
 class ConteudoLA5Page extends StatelessWidget {
-  const ConteudoLA5Page({Key? key}) : super(key: key);
+  const ConteudoLA5Page({super.key});
 
   @override
   Widget build(BuildContext context) {

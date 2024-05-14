@@ -1,7 +1,9 @@
-import 'package:epp_firebase/controller/login_controller.dart';
+// ignore_for_file: use_super_parameters
+
+import 'package:epp/controller/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'conteudo_la2.dart';
-import 'package:epp_firebase/pages/bottom_pages/bottom_bar.dart';
+import 'package:epp/pages/bottom_pages/bottom_bar.dart';
 
 class ConteudoLAPage extends StatelessWidget {
   const ConteudoLAPage({Key? key}) : super(key: key);
@@ -86,7 +88,7 @@ class ConteudoLAPage extends StatelessWidget {
           Expanded(
             child: Align(
               alignment: Alignment.bottomCenter,
-              child: Container(
+              child: SizedBox(
                 height: screenHeight * 0.1, // Mesma altura que a AppBar
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.02),

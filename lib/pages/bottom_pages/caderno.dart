@@ -4,9 +4,6 @@ import 'package:sizer/sizer.dart';
 
 import '../../components/app_bar.dart';
 import '../../controller/login_controller.dart';
-import '../auth/login.dart';
-import '../basic/configs.dart';
-import '../basic/notifications.dart';
 import '../features/anotacao_page.dart';
 
 class Caderno extends StatelessWidget {

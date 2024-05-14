@@ -6,7 +6,7 @@ import 'package:sizer/sizer.dart';
 import '../../controller/login_controller.dart';
 
 class SenhaReset extends StatefulWidget {
-  SenhaReset({super.key});
+  const SenhaReset({super.key});
 
   @override
   State<SenhaReset> createState() => _SenhaResetState();
@@ -161,7 +161,6 @@ class _SenhaResetState extends State<SenhaReset> {
                         context,
                         txtEmailSenha.text,
                       );
-                      style:
                       ButtonStyle(
                         padding: MaterialStateProperty.all(EdgeInsets
                             .zero), // Remove o padding padrão do TextButton

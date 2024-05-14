@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
-import 'package:epp_firebase/services/firebase_service.dart';
+import 'package:epp/services/firebase_service.dart';
 import 'package:flutter/material.dart';
 import '../basic/perfil.dart';
 import 'colegas.dart';
@@ -11,7 +11,7 @@ import 'ranking.dart';
 class BottomBar extends StatefulWidget {
   final FirebaseService firebaseService;
 
-  const BottomBar({Key? key, required this.firebaseService}) : super(key: key);
+  const BottomBar({super.key, required this.firebaseService});
 
   @override
   State<BottomBar> createState() => _BottomBarState();

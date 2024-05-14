@@ -1,10 +1,10 @@
-import 'package:epp_firebase/controller/login_controller.dart';
-import 'package:epp_firebase/pages/logicaalgoritmo/Apresentacao_la.dart';
+import 'package:epp/controller/login_controller.dart';
+import 'package:epp/pages/logicaalgoritmo/Apresentacao_la.dart';
 import 'package:flutter/material.dart';
-import 'package:epp_firebase/pages/bottom_pages/bottom_bar.dart';
+import 'package:epp/pages/bottom_pages/bottom_bar.dart';
 
 class ConclusaoLAPage extends StatelessWidget {
-  const ConclusaoLAPage({Key? key}) : super(key: key);
+  const ConclusaoLAPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +50,7 @@ class ConclusaoLAPage extends StatelessWidget {
               child: SingleChildScrollView(
                 padding: const EdgeInsets.all(18.0),
                 child: Text(
-                  'Parabéns, você organizou o algoritmo de maneira que faz sentido e lógica para chegar a onde queriamos, uma xicara de café ☕, 5 pontos foram acrescentados a seu perfil. Em conclusão, podemos entender que a lógica de programação começa com essa habilidade de criar algoritmos. É sobre aprender a quebrar problemas em passos compreensíveis para chegar onde você precisa.\n\n'
+                  'Parabéns, você organizou o algoritmo de maneira que faz sentido e lógica para chegar a onde queriamos, um delicioso hambúrger 🍔, 5 pontos foram acrescentados a seu perfil. Em conclusão, podemos entender que a lógica de programação começa com essa habilidade de criar algoritmos. É sobre aprender a quebrar problemas em passos compreensíveis para chegar onde você precisa.\n\n'
                   'No próximo módulo, se estuda mais algoritmos, porém entendendo como seriam implementados em um programa real e dentro da estrutura de C++. Para isso, começariamos com pseudocódigo antes de passarmos para a linguagem propriamente dita.',
                   style: TextStyle(
                     fontSize: screenWidth * 0.045,

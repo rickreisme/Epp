@@ -13,8 +13,8 @@ class PlayerData {
 
   PlayerData copyWith({int? posicao}) {
     return PlayerData(
-      nome: this.nome,
-      pontos: this.pontos,
+      nome: nome,
+      pontos: pontos,
       posicao: posicao ?? this.posicao,
     );
   }

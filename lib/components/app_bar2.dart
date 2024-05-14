@@ -1,7 +1,7 @@
 // ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors_in_immutables, prefer_const_constructors, unnecessary_string_interpolations
 
 // ignore: unused_import
-import 'package:epp_firebase/model/mensagem.dart';
+import 'package:epp/model/mensagem.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 // ignore: unused_import

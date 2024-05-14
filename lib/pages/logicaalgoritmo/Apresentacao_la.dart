@@ -1,11 +1,13 @@
 // ignore: file_names
-import 'package:epp_firebase/controller/login_controller.dart';
+// ignore_for_file: file_names, duplicate_ignore
+
+import 'package:epp/controller/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'conteudo_la.dart';
-import 'package:epp_firebase/pages/bottom_pages/bottom_bar.dart';
+import 'package:epp/pages/bottom_pages/bottom_bar.dart';
 
 class ApresentacaoLAPage extends StatelessWidget {
-  const ApresentacaoLAPage({Key? key}) : super(key: key);
+  const ApresentacaoLAPage({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,7 +1,7 @@
 // ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_unnecessary_containers
 
-import 'package:epp_firebase/components/text_component.dart';
-import 'package:epp_firebase/model/mensagem.dart';
+import 'package:epp/components/text_component.dart';
+import 'package:epp/model/mensagem.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -196,23 +196,6 @@ class _CadastroState extends State<Cadastro> {
                       child: SizedBox(
                           child: (
                             TextButton(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 15),
-                                  child: Text(
-                                    "Finalizar Cadastro",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontFamily: 'Varela Round',
-                                      fontSize: 24,
-                                    ),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ),
-                              ],
-                            ),
                             style: ButtonStyle(
                               padding: MaterialStateProperty.all(EdgeInsets.zero)
                             ),
@@ -247,6 +230,23 @@ class _CadastroState extends State<Cadastro> {
                               );
                               }
                             },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 15),
+                                  child: Text(
+                                    "Finalizar Cadastro",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontFamily: 'Varela Round',
+                                      fontSize: 24,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                              ],
+                            ),
                           )
                         ),
                       ),
@@ -277,6 +277,17 @@ class _CadastroState extends State<Cadastro> {
                     child: SizedBox(
                         child: (
                           TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Login(),
+                              ),
+                            );
+                          },
+                          style: ButtonStyle(
+                            padding: MaterialStateProperty.all(EdgeInsets.zero)
+                          ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
@@ -293,17 +304,6 @@ class _CadastroState extends State<Cadastro> {
                                 ),
                               ),
                             ],
-                          ),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => Login(),
-                              ),
-                            );
-                          },
-                          style: ButtonStyle(
-                            padding: MaterialStateProperty.all(EdgeInsets.zero)
                           ),
                         )
                       ),

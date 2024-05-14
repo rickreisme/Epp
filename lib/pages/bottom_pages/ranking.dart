@@ -1,7 +1,6 @@
 // ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:sizer/sizer.dart';
 import '../../components/app_bar.dart';
 import '../../components/student_card.dart';
@@ -13,10 +12,10 @@ class Ranking extends StatelessWidget {
   final List<PlayerData> playerDataList;
 
   const Ranking({
-    Key? key,
+    super.key,
     required this.firebaseService,
     required this.playerDataList,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

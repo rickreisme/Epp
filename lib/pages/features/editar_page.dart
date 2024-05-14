@@ -22,6 +22,7 @@ class _EditarPageState extends State<EditarPage> {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
+        backgroundColor: Color(0xFF5F1796),
         title: Text(
           "Editar Perfil",
           style: TextStyle(

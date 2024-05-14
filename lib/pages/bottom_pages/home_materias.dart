@@ -1,17 +1,15 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_print
 
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:epp_firebase/components/app_bar.dart';
-import 'package:epp_firebase/components/card_materia.dart';
-import 'package:epp_firebase/components/locked_card_materias.dart';
-import 'package:epp_firebase/pages/logicaalgoritmo/Apresentacao_la.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:epp/components/app_bar.dart';
+import 'package:epp/components/card_materia.dart';
+import 'package:epp/components/locked_card_materias.dart';
+import 'package:epp/pages/logicaalgoritmo/Apresentacao_la.dart';
 import 'package:flutter/material.dart';
 
 import '../../controller/login_controller.dart';
 
 class HomeMaterias extends StatelessWidget {
-  const HomeMaterias({Key? key}) : super(key: key);
+  const HomeMaterias({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +36,7 @@ class HomeMaterias extends StatelessWidget {
                     children: [
                       Expanded(
                           child: MateriaCard(
-                              materiaName: "Logica\nAlgoritmo",
+                              materiaName: "Logica e Algoritmo",
                               onPressed: () {
                                 Navigator.push(
                                   context,

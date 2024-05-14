@@ -1,11 +1,11 @@
-import 'package:epp_firebase/controller/login_controller.dart';
+import 'package:epp/controller/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'conteudo_la3.dart'; 
-import 'package:epp_firebase/pages/bottom_pages/bottom_bar.dart';
+import 'package:epp/pages/bottom_pages/bottom_bar.dart';
 
 
 class ConteudoLA2Page extends StatelessWidget {
-  const ConteudoLA2Page({Key? key}) : super(key: key);
+  const ConteudoLA2Page({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -89,7 +89,7 @@ class ConteudoLA2Page extends StatelessWidget {
           Expanded(
             child: Align(
               alignment: Alignment.bottomCenter,
-              child: Container(
+              child: SizedBox(
                 height: screenHeight * 0.1, // Mesma altura que a AppBar
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.02),

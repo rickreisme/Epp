@@ -1,11 +1,10 @@
-// ignore_for_file: library_private_types_in_public_api, use_super_parameters, avoid_print
+// ignore_for_file: library_private_types_in_public_api, use_super_parameters, avoid_print, use_build_context_synchronously
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:epp_firebase/pages/logicaalgoritmo/Apresentacao_la.dart';
-import 'package:epp_firebase/pages/logicaalgoritmo/conclusao_la.dart';
+import 'package:epp/pages/logicaalgoritmo/Apresentacao_la.dart';
+import 'package:epp/pages/logicaalgoritmo/conclusao_la.dart';
 import 'package:flutter/foundation.dart';
 
 import '../../controller/login_controller.dart';
@@ -58,6 +57,7 @@ class _ExercicioLAPageState extends State<ExercicioLAPage> {
     'Presunto',
     'Fatia de pão (topo)',
     'Tomate',
+    'Hambúrger',
     'Alface',
     'Fatia de pão (base)',
     'Queijo',
@@ -69,12 +69,14 @@ class _ExercicioLAPageState extends State<ExercicioLAPage> {
       'Fatia de pão (topo)',
       'Presunto',
       'Tomate',
+      'Hambúrger',
       'Alface',
       'Queijo',
       'Fatia de pão (base)'
     ],
     [
       'Fatia de pão (topo)',
+      'Hambúrger',
       'Presunto',
       'Alface',
       'Tomate',
@@ -84,6 +86,7 @@ class _ExercicioLAPageState extends State<ExercicioLAPage> {
     [
       'Fatia de pão (topo)',
       'Presunto',
+      'Hambúrger',
       'Queijo',
       'Tomate',
       'Alface',
@@ -93,6 +96,7 @@ class _ExercicioLAPageState extends State<ExercicioLAPage> {
       'Fatia de pão (topo)',
       'Presunto',
       'Tomate',
+      'Hambúrger',
       'Queijo',
       'Alface',
       'Fatia de pão (base)'
@@ -102,6 +106,7 @@ class _ExercicioLAPageState extends State<ExercicioLAPage> {
       'Queijo',
       'Presunto',
       'Tomate',
+      'Hambúrger',
       'Alface',
       'Fatia de pão (base)'
     ],
@@ -111,11 +116,13 @@ class _ExercicioLAPageState extends State<ExercicioLAPage> {
       'Tomate',
       'Presunto',
       'Alface',
+      'Hambúrger',
       'Fatia de pão (base)'
     ],
     [
       'Fatia de pão (topo)',
       'Queijo',
+      'Hambúrger',
       'Tomate',
       'Alface',
       'Presunto',
@@ -125,6 +132,7 @@ class _ExercicioLAPageState extends State<ExercicioLAPage> {
       'Fatia de pão (topo)',
       'Queijo',
       'Alface',
+      'Hambúrger',
       'Presunto',
       'Tomate',
       'Fatia de pão (base)'
@@ -134,6 +142,7 @@ class _ExercicioLAPageState extends State<ExercicioLAPage> {
       'Queijo',
       'Alface',
       'Tomate',
+      'Hambúrger',
       'Presunto',
       'Fatia de pão (base)'
     ],
@@ -141,6 +150,7 @@ class _ExercicioLAPageState extends State<ExercicioLAPage> {
     [
       'Fatia de pão (topo)',
       'Tomate',
+      'Hambúrger',
       'Presunto',
       'Alface',
       'Queijo',
@@ -150,6 +160,7 @@ class _ExercicioLAPageState extends State<ExercicioLAPage> {
       'Fatia de pão (topo)',
       'Tomate',
       'Presunto',
+      'Hambúrger',
       'Queijo',
       'Alface',
       'Fatia de pão (base)'
@@ -159,11 +170,13 @@ class _ExercicioLAPageState extends State<ExercicioLAPage> {
       'Tomate',
       'Alface',
       'Presunto',
+      'Hambúrger',
       'Queijo',
       'Fatia de pão (base)'
     ],
     [
       'Fatia de pão (topo)',
+      'Hambúrger',
       'Tomate',
       'Alface',
       'Queijo',
@@ -176,6 +189,7 @@ class _ExercicioLAPageState extends State<ExercicioLAPage> {
       'Queijo',
       'Presunto',
       'Alface',
+      'Hambúrger',
       'Fatia de pão (base)'
     ],
     [
@@ -183,11 +197,13 @@ class _ExercicioLAPageState extends State<ExercicioLAPage> {
       'Tomate',
       'Queijo',
       'Alface',
+      'Hambúrger'
       'Presunto',
       'Fatia de pão (base)'
     ],
     [
       'Fatia de pão (topo)',
+      'Hambúrger',
       'Alface',
       'Presunto',
       'Tomate',
@@ -200,12 +216,14 @@ class _ExercicioLAPageState extends State<ExercicioLAPage> {
       'Presunto',
       'Queijo',
       'Tomate',
+      'Hambúrger',
       'Fatia de pão (base)'
     ],
     [
       'Fatia de pão (topo)',
       'Alface',
       'Tomate',
+      'Hambúrger',
       'Presunto',
       'Queijo',
       'Fatia de pão (base)'
@@ -213,6 +231,7 @@ class _ExercicioLAPageState extends State<ExercicioLAPage> {
     [
       'Fatia de pão (topo)',
       'Alface',
+      'Hambúrger',
       'Tomate',
       'Queijo',
       'Presunto',
@@ -223,6 +242,7 @@ class _ExercicioLAPageState extends State<ExercicioLAPage> {
       'Alface',
       'Queijo',
       'Presunto',
+      'Hambúrger',
       'Tomate',
       'Fatia de pão (base)'
     ],
@@ -230,6 +250,7 @@ class _ExercicioLAPageState extends State<ExercicioLAPage> {
       'Fatia de pão (topo)',
       'Alface',
       'Queijo',
+      'Hambúrger',
       'Tomate',
       'Presunto',
       'Fatia de pão (base)'
@@ -414,8 +435,8 @@ class _ExercicioLAPageState extends State<ExercicioLAPage> {
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          title: Text("Módulo já concuído"),
-          content: Text("Parabéns! Você acertou novamente!"),
+          title: const Text("Módulo já concuído"),
+          content: const Text("Parabéns! Você acertou novamente!"),
           actions: [
             TextButton(
                 onPressed: () {
@@ -436,7 +457,7 @@ class _ExercicioLAPageState extends State<ExercicioLAPage> {
                     (route) => false,
                   );
                 },
-                child: Text("Finalizar")),
+                child: const Text("Finalizar")),
           ],
         ),
       );

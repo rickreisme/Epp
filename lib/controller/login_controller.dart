@@ -1,7 +1,7 @@
-// ignore_for_file: prefer_const_constructors, unnecessary_string_interpolations
+// ignore_for_file: prefer_const_constructors, unnecessary_string_interpolations, unnecessary_null_comparison, avoid_print
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:epp_firebase/pages/auth/login.dart';
+import 'package:epp/pages/auth/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
