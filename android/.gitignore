@@ -13,4 +13,4 @@ key.properties
 **/*.jks
 
 # Ignore Google Services JSON file
-android/app/google-services.json
+/android/app/google-services.json
