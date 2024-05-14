@@ -98,6 +98,17 @@ Siga os passos abaixo para configurar e rodar o aplicativo E++ em sua máquina d
      ```sh
      flutter run
      ```
+## Configuração do Google Services
+
+Este projeto requer um arquivo `google-services.json` para integração com os serviços do Firebase. Siga os passos abaixo para configurar:
+
+1. Vá para o console do Firebase.
+2. Selecione seu projeto e navegue até Configurações do Projeto.
+3. Baixe o arquivo `google-services.json`.
+4. Coloque o arquivo `google-services.json` na raiz do seu projeto Flutter.
+
+O arquivo `google-services.json` deve ser mantido em segurança e não deve ser compartilhado publicamente.
+
 
 ---
 
