@@ -46,3 +46,9 @@ app.*.map.json
 # Ignorar o arquivo de configuração Firebase na pasta services
 firebase_options.dart
 config.dart
+
+# Environment variables file
+.env
+
+# Ignore Google Services JSON file
+/android/app/google-services.json
