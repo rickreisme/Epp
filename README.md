@@ -24,9 +24,13 @@ Atualmente, o projeto está em desenvolvimento.
 
 ## Estrutura do Projeto
 
+### Capturas de Tela
+
+Todas as capturas de tela tiradas do aplicativo estão disponíveis na pasta `Screenshots` dentro da pasta `Projeto` na raiz do repsitório.
+
 ### Diagramas
 
-Os diagramas de caso de uso, classes e sequência estão disponíveis na pasta `Diagramas` na raiz do projeto.
+Os diagramas de caso de uso, classes e sequência estão disponíveis na pasta `Diagramas` dentro da pasta `Projeto` na raiz do repsitório.
 
 ### Estrutura Principal da Pasta `lib`
 
