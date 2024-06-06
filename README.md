@@ -11,11 +11,6 @@ Atualmente, o projeto está em desenvolvimento.
 - **Framework:** Flutter
 - **Linguagem:** Dart
 
-## Desenvolvedores
-
-- **Rick Reis**
-- **Melissa Nascimento**
-
 <div style="display: flex; flex-direction: row; gap: 5px;">
     <img src="assets/img/login.png" alt="Tela de login do aplicativo E++" width="200"/> 
     <img src="assets/img/telaMaterias.png" alt="Tela principal do aplicativo E++" width="200"/>
